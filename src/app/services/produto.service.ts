@@ -18,6 +18,7 @@ import { Produto } from '../models/produto';
   providedIn: 'root'
 })
 export class ProdutoService {
+
   url = 'http://localhost:4000/api/produtos/';
 
   constructor(private http: HttpClient) { }
@@ -34,7 +35,11 @@ export class ProdutoService {
     return this.http.post(this.url, producto);
   }
 
-  obtenerProduto(id: string): Observable<any> {
+  obterProduto(id: string): Observable<any> {
     return this.http.get(this.url + id);
+  }
+
+  editarProduto(id: string, produto: Produto): Observable<any> {
+    return this.http.put(this.url + id, produto);
   }
 }

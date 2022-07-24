@@ -5,7 +5,7 @@
               <div class="card-body text-center">
                   <span class="titulo">LISTA DE PRODUTOS</span>
                   <button class="btn btn-success float-end" routerLink="/criar-produto">NOVO</button>
-                  <table class="table table-striped mt-3">
+                  <table *ngIf="listProdutos.length > 0" class="table table-striped mt-3">
                       <thead>
                         <tr>
                           <th scope="col">Produto</th>
@@ -16,41 +16,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Coca Cola</td>
-                          <td>Bebida</td>
-                          <td>Rio de Janeiro</td>
-                          <td> R$ 8,00 </td>
+                        <tr *ngFor ="let produto of listProdutos">
+                          <td>{{produto.nome}}</td>
+                          <td>{{produto.categoria}}</td>
+                          <td>{{produto.localizacao}}</td>
+                          <td>{{produto.preco | currency: 'BRL' }}</td>
                           <td>
-                              <i class="fas fa-solid fa-pen-to-square text-primary"></i>
-                              <i class="fas fa-solid fa-trash text-danger"></i>
+                              <i [routerLink]="['/editar-produto', produto._id]" class="fas fa-solid fa-pen-to-square text-primary"></i>
+                              <i (click)="eliminarProducto(produto._id)" class="fas fa-solid fa-trash text-danger"></i>
                           </td>
                         </tr>
-                        <tr>
-                          <td>Nescau</td>
-                          <td>Achocolatado</td>
-                          <td>Santa Catarina</td>
-                          <td> R$ 4,00 </td>
-                          <td>
-                              <i class="fas fa-solid fa-pen-to-square text-primary"></i>
-                              <i class="fas fa-solid fa-trash text-danger"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Scooter</td>
-                          <td>Transporte elétrico</td>
-                          <td>São Paulo</td>
-                          <td> R$ 8,000 </td>
-                          <td>
-                              <i class="fas fa-solid fa-pen-to-square text-primary"></i>
-                              <i class="fas fa-solid fa-trash text-danger"></i>
-                          </td>
-                        </tr>
+                      <td>
+
+
                       </tbody>
                     </table>
-                    <!--
-                    <h5 style="text-align: start; margin-top: 10px;">Não há produtos para mostrar</h5>
-                    -->
+
+                    <h5 *ngIf="listProdutos.length < 0" style="text-align: start; margin-top: 10px;">Não há produtos para mostrar</h5>
+
               </div>
           </div>
       </div>

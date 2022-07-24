@@ -31,6 +31,7 @@ export class CriarProdutoComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.esEditar();
   }
    agregarProduto() {
 
@@ -41,23 +42,49 @@ export class CriarProdutoComponent implements OnInit {
       preco: this.produtoForm.get('preco')?.value,
     }
 
+    if(this.id !== null) {
+      // Edito o produto
+
+      this._produtoService.editarProduto(this.id, PRODUTO).subscribe(data => {
+        this.toastr.info('Produto editado com sucesso', 'Produto editado');
+        this.router.navigate(['/']);
+      }, error => {
+        console.log(error);
+        this.produtoForm.reset();
+      })
+
+    } else {
+      // agregamos produto
+      console.log(PRODUTO);
+    this._produtoService.guardarProduto(PRODUTO).subscribe(data => {
+      this.toastr.success('Produto criado com sucesso', 'Produto criado');
+      this.router.navigate(['/']);
+    }, error => {
+      console.log(error);
+      this.produtoForm.reset();
+    })
+    }
+
+
 
     console.log(PRODUTO);
     this.toastr.success('O produto foi registrado com exito!');
     this.router.navigate(['/listar-produto']);
 
-    /*
-    this._produtoService.guardarProduto(PRODUTO).subscribe(data => {
-      this.toastr.success('o produto fOI registrado coM exito!', 'Produto Registrado!');
-      this.router.navigate(['/']);
-    }, error => {
-      console.log(error);
-      this.productoForm.reset();
-    })
-
-
-  }
-*/
   }
 
+  esEditar() {
+
+    if(this.id !== null) {
+      this.titulo = 'Editar producto';
+      this._produtoService.obterProduto(this.id).subscribe(data => {
+        this.produtoForm.setValue({
+          produto: data.nome,
+          categoria: data.categoria,
+          localizacao: data.localizacao,
+          preco: data.preco,
+        })
+      })
+    }
+  }
 }
