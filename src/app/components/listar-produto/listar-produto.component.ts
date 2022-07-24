@@ -29,7 +29,7 @@ export class ListarProdutoComponent implements OnInit {
 
     eliminarProducto(id: any) {
       this._produtoService.eliminarProduto(id).subscribe(data => {
-        this.toastr.error('El producto fue eliminado con exito' ,'Producto Eliminado');
+        this.toastr.error('O produto foi eliminado com exito' ,'Produto Eliminado');
         this.obterProdutos();
       }, error => {
         console.log(error);

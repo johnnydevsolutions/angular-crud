@@ -10,7 +10,7 @@
                         <tr>
                           <th scope="col">Produto</th>
                           <th scope="col">Categoria</th>
-                          <th scope="col">Localização</th>
+                          <th scope="col">Quantidade</th>
                           <th scope="col">Preço</th>
                           <th scope="col"></th>
                         </tr>
@@ -19,7 +19,7 @@
                         <tr *ngFor ="let produto of listProdutos">
                           <td>{{produto.nome}}</td>
                           <td>{{produto.categoria}}</td>
-                          <td>{{produto.localizacao}}</td>
+                          <td>{{produto.quantidade}}</td>
                           <td>{{produto.preco | currency: 'BRL' }}</td>
                           <td>
                               <i [routerLink]="['/editar-produto', produto._id]" class="fas fa-solid fa-pen-to-square text-primary"></i>

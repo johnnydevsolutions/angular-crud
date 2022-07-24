@@ -17,13 +17,13 @@ export class CriarProdutoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router, //Redirecionar
-              private toastr: ToastrService, //Mensages
+              private toastr: ToastrService, //Mensagens
               private _produtoService: ProdutoService,
               private aRouter: ActivatedRoute) {
     this.produtoForm = this.fb.group({
       produto: ['', Validators.required],
       categoria: ['', Validators.required],
-      localizacao: ['', Validators.required],
+      quantidade: ['', Validators.required], //alteração localizacao por quantidade
       preco: ['', Validators.required],
 
     })
@@ -38,7 +38,7 @@ export class CriarProdutoComponent implements OnInit {
     const PRODUTO: Produto = {
       nome: this.produtoForm.get('produto')?.value,
       categoria: this.produtoForm.get('categoria')?.value,
-      localizacao: this.produtoForm.get('localizacao')?.value,
+      quantidade: this.produtoForm.get('quantidade')?.value, //alteração
       preco: this.produtoForm.get('preco')?.value,
     }
 

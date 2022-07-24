@@ -24,11 +24,11 @@
                           </div>
                       </div>
                       <div class="mb-3">
-                          <input type="text" formControlName="localizacao" class="form-control form-control-lg"
-                              placeholder="localização">
+                          <input type="text" formControlName="quantidade" class="form-control form-control-lg"
+                              placeholder="quantidade">   <!--Alteração no formControlName-->
                           <div class="text-danger"
-                            *ngIf="produtoForm.get('localizacao')?.hasError('required') && produtoForm.get('localizacao')?.touched">
-                              <span>A localização <strong>é obrigatoria</strong></span>
+                            *ngIf="produtoForm.get('quantidade')?.hasError('required') && produtoForm.get('quantidade')?.touched"> <!--Alteração-->
+                              <span>A quantidade <strong>é obrigatoria</strong></span>
                           </div>
                       </div>
                       <div class="mb-3">
